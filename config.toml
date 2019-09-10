@@ -1,8 +1,9 @@
-baseurl = "https://www.example.org/"
-title = "Kiera"
-copyright = "Copyright &copy; 2017 - Author Name"
+baseurl = "https://sarigiering.github.io"
+title = "Visible Ocean"
+copyright = "Copyright &copy; 2019 - Sari Giering"
 canonifyurls = true
 theme = "kiera"
+publishDir = "sarigiering.github.io"
 
 paginate = 3
 
@@ -10,16 +11,27 @@ summaryLength = 30
 enableEmoji = true
 pygmentsCodeFences = true
 
+googleAnalytics= "UA-146268173-1"
+
 [author]
-    name = ""
-    github = ""
+    name = "Sari Giering"
+    github = "sari-giering"
     gitlab = ""
     linkedin = ""
     facebook = ""
-    twitter = ""
+    twitter = "sarigiering"
     instagram = ""
-
+    institute = "noc.ac.uk/people/slcg"
+    googlescholarid = "_4M69t8AAAAJ&hl"
 [params]
-    tagline = "A Hugo theme for creative and technical writing"
+    tagline = "Ideas, codes and brainstorming for making sense of ocean data"
 
 
+[[menu.main]]
+    name = "Home" #Name in the navigation bar
+    weight = 10 #The larger the weight, the more on the right this item will be
+    url = "https://sarigiering.github.io/" #URL address
+[[menu.main]]
+    name = "Posts"
+    weight = 20
+    url = "https://sarigiering.github.io/posts/"
