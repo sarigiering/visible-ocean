@@ -1,5 +1,5 @@
 +++
-title = "Extract Individual Particle Images From FlowCam"
+title = "Extract individual particle images from FlowCam"
 date = 2019-09-09T11:20:08-02:30
 draft = false
 tags = ["particles", "FlowCam", "vignette", "extraction"]
@@ -63,7 +63,7 @@ This is how your directory might look like before you run the code:
 ...
 ```
 
-After extraction, you will find an new folder ("Extracted") in you project folder containing subfolders for each sample will the extracted vignettes.
+After extraction, you will find a new folder ("Extracted") in your project folder containing subfolders for each sample with the extracted vignettes.
 
 ```
 .
