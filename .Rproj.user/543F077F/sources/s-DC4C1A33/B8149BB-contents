@@ -1,0 +1,19 @@
+getwd()
+
+# Set optios for new blog post
+# subdirectly for new blog post: /posts
+# file type Rmarkdown to allow integration of widgets and plots
+# Author name
+options(servr.daemon = TRUE,
+        blogdown.subdir = "posts",
+        blogdown.ext = ".Rmd",
+        blogdown.author="Sari Giering",
+        blogdown.yaml.empty= TRUE)
+
+
+blogdown::serve_site()
+
+
+#blogdown::new_post("Overview of Marine Snow Catcher deployments")
+
+servr::daemon_stop(4)
