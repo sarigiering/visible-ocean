@@ -8,7 +8,6 @@ slug: overview-of-marine-snow-catcher-deployments
 draft: no
 ---
 
-
 ## Marine Snow Catcher deployments
 This map shows all MSC deployments that we know of. To get deployment details, click on a cluster and marker, and information about the programme, cruise and contact person will pop up. Each contact person has a different colour, so you know whether more than one contact person is in a cluster.
 
@@ -36,7 +35,7 @@ leafMap <- leaflet(data=msc) %>%
                    color = COL,
                    popup = content,
                    clusterOptions = markerClusterOptions(#freezeAtZoom = 5,
-                     disableClusteringAtZoom = 7) #
+                     disableClusteringAtZoom = 7)
                    )
 leafMap
 ```

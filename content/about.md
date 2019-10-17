@@ -6,4 +6,4 @@ weight = "30" #Right-most nav item
 meta = "false" #Do not display tags or categories
 +++
 
-> Things take longer to happen then you think they will, and then they happen much faster than you thought they could. Rudi Dornbusch
+> Things take longer to happen than you think they will, and then they happen much faster than you thought they could. Rudi Dornbusch

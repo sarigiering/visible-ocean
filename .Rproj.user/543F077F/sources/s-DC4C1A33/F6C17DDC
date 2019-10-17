@@ -1,19 +1,19 @@
 {
     "collab_server" : "",
     "contents" : "",
-    "created" : 1571316742542.000,
+    "created" : 1571346651554.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
     "hash" : "0",
-    "id" : "E4C16333",
-    "lastKnownWriteTime" : 1571345231,
-    "last_content_update" : 1571345231485,
+    "id" : "F6C17DDC",
+    "lastKnownWriteTime" : 1571346632,
+    "last_content_update" : 1571346632,
     "path" : "C:/visible-ocean/content/posts/2019-10-17-overview-of-marine-snow-catcher-deployments.Rmd",
     "project_path" : "content/posts/2019-10-17-overview-of-marine-snow-catcher-deployments.Rmd",
     "properties" : {
-        "cursorPosition" : "42,4",
-        "scrollLine" : "32"
+        "cursorPosition" : "7,9",
+        "scrollLine" : "0"
     },
     "relative_order" : 2,
     "source_on_save" : false,
