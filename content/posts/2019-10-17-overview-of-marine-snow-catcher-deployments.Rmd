@@ -25,7 +25,7 @@ content <- paste(sep="",
                  "Contact: ", msc$Contact, "<br/>")
 
 library(RColorBrewer)
-palette <- c(brewer.pal(8, "Dark2"), brewer.pal(9, "Set1")) 
+palette <- c(brewer.pal(8, "Dark2"), brewer.pal(9, "Set1"))
 COL <- palette[as.numeric(as.factor(msc$Contact))]
 
 library(leaflet)
@@ -42,20 +42,20 @@ leafMap
 <br>
 
 ```{r overview-table, echo=FALSE, warning=FALSE}
-overview        <- aggregate(msc$Lat, by=list(msc$Programme,msc$Cruise_code,msc$Contact), length)
-names(overview) <- c("Programme","Cruise_code","Contact","Deployments")
+overview        <- aggregate(msc$Lat, by=list(msc$Repository,msc$Contact,msc$Cruise_code,msc$Programme), length)
 overview$Lat    <- round(aggregate(msc$Lat, by=list(msc$Programme,msc$Cruise_code,msc$Contact), mean, na.rm=T)$x*100)/100
 overview$Long   <- round(aggregate(msc$Long, by=list(msc$Programme,msc$Cruise_code,msc$Contact), mean, na.rm=T)$x*100)/100
+overview$Date   <- aggregate(msc$Date, by=list(msc$Programme,msc$Cruise_code,msc$Contact), min, na.rm=T)$x
+names(overview) <- c("Repository","Contact","Cruise code","Programme","Deployments","Lat","Long","Date (earliest)")
 
-overview <- overview[,c("Programme","Cruise_code","Lat","Long","Deployments","Contact")]
+overview <- overview[,c("Programme","Cruise code","Date (earliest)","Lat","Long","Deployments","Contact","Repository")]
 
 library(kableExtra)
-
+options(kableExtra.html.bsTable = TRUE)
 
 overview %>%
-kable(caption = "Overview of MSC deployments", align=c("l","l","c","c","c","l")) %>%
-    kable_styling(bootstrap_options = c("striped", "hover"), latex_options = "scale_down", font_size = 12)
-
+kable(caption = "Overview of MSC deployments", align=c("l","c","c","c","c","c","l")) %>%
+    kable_styling(bootstrap_options = c("striped", "hover"), font_size = 10)#
 ```
 
 ## JETZON
@@ -71,6 +71,6 @@ As part of JETZON (Joint Exploration of the Twilight Zone Ocean Network), we hav
   
 * Metadata template for data submission to official repositories 
     + (saves you time)
-    + You can access it here: <a href="https://docs.google.com/document/d/1N-PONTo3DERYcYueclHjDLagidrxCOJV2COdXmzO4BU/edit?usp=sharing" target="_blank">Metadata description for data submission</a>.
+    + You can access it here: <a class="link" href="https://docs.google.com/document/d/1N-PONTo3DERYcYueclHjDLagidrxCOJV2COdXmzO4BU/edit?usp=sharing" target="_blank">Metadata description for data submission</a>.
 
 Please contact me if you have questions or would like access to any of these.

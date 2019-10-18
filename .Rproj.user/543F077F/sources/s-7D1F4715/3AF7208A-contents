@@ -1,0 +1,2 @@
+x <- knitr::kable(head(mtcars), "html")
+column_spec(x, 1:2, width = "30em")

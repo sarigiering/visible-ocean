@@ -1,0 +1,201 @@
+"0","BY <- list(msc$Contact,msc$Repository,msc$Cruise_code,msc$Programme)"
+"0","overview        <- aggregate(msc$Lat, by=BY, length)"
+"0","names(overview) <- c(""Contact"",""Repository"",""Cruise_code"",""Programme"",""Deployments"")"
+"0","overview$Lat    <- round(aggregate(msc$Lat, by=BY, mean, na.rm=T)$x*100)/100"
+"0","overview$Long   <- round(aggregate(msc$Long, by=BY, mean, na.rm=T)$x*100)/100"
+"0","overview$Date   <- aggregate(msc$Date, by=BY, mean, na.rm=T)$x"
+"0","overview <- overview[,c(""Programme"",""Cruise_code"",""Date"",""Lat"",""Long"",""Deployments"",""Contact"",""Repository"")]"
+"0","library(kableExtra)"
+"0","options(kableExtra.html.bsTable = TRUE)"
+"0","overview %>%"
+"0","kable(caption = ""Overview of MSC deployments"", align=c(""l"",""c"",""c"",""c"",""c"",""c"",""l"")) %>%"
+"0","    kable_styling(bootstrap_options = c(""striped"", ""hover""), font_size = 10)#"
+"1","<table class=""table table-striped table-hover"" style=""font-size: 10px; margin-left: auto; margin-right: auto;"">
+<caption style=""font-size: initial !important;"">Overview of MSC deployments</caption>
+ <thead>
+  <tr>
+   <th style=""text-align:left;""> Programme </th>
+   <th style=""text-align:center;""> Cruise_code </th>
+   <th style=""text-align:center;""> Date </th>
+   <th style=""text-align:center;""> Lat </th>
+   <th style=""text-align:center;""> Long </th>
+   <th style=""text-align:center;""> Deployments </th>
+   <th style=""text-align:left;""> Contact </th>
+   <th style=""text-align:left;""> Repository </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style=""text-align:left;""> BOFS </td>
+   <td style=""text-align:center;""> DI191 </td>
+   <td style=""text-align:center;""> 1990-05-26 </td>
+   <td style=""text-align:center;""> 48.36 </td>
+   <td style=""text-align:center;""> -17.46 </td>
+   <td style=""text-align:center;""> 28 </td>
+   <td style=""text-align:left;""> Richard  Lampitt (NOC, UK) </td>
+   <td style=""text-align:left;""> BODC </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> COMICS </td>
+   <td style=""text-align:center;""> DY086 </td>
+   <td style=""text-align:center;""> 2017-11-28 </td>
+   <td style=""text-align:center;""> -53.29 </td>
+   <td style=""text-align:center;""> -40.33 </td>
+   <td style=""text-align:center;""> 127 </td>
+   <td style=""text-align:left;""> Sari Giering (NOCS, UK) </td>
+   <td style=""text-align:left;""> BODC </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> COMICS </td>
+   <td style=""text-align:center;""> DY090 </td>
+   <td style=""text-align:center;""> 2018-06-07 </td>
+   <td style=""text-align:center;""> -18.89 </td>
+   <td style=""text-align:center;""> 10.64 </td>
+   <td style=""text-align:center;""> 168 </td>
+   <td style=""text-align:left;""> Sari Giering (NOCS, UK) </td>
+   <td style=""text-align:left;""> BODC </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> EUROBASIN </td>
+   <td style=""text-align:center;""> M87/1-2 </td>
+   <td style=""text-align:center;""> 2012-04-12 </td>
+   <td style=""text-align:center;""> 61.33 </td>
+   <td style=""text-align:center;""> -6.18 </td>
+   <td style=""text-align:center;""> 33 </td>
+   <td style=""text-align:left;""> Sari Giering (NOCS, UK) </td>
+   <td style=""text-align:left;""> PANGAEA </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> EuroSITES </td>
+   <td style=""text-align:center;""> D341 </td>
+   <td style=""text-align:center;""> 2009-07-23 </td>
+   <td style=""text-align:center;""> 48.92 </td>
+   <td style=""text-align:center;""> -16.62 </td>
+   <td style=""text-align:center;""> 12 </td>
+   <td style=""text-align:left;""> Richard  Sanders (NOC, UK) </td>
+   <td style=""text-align:left;""> BODC </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> FixO3 </td>
+   <td style=""text-align:center;""> M108 </td>
+   <td style=""text-align:center;""> 2014-07-15 </td>
+   <td style=""text-align:center;""> 48.93 </td>
+   <td style=""text-align:center;""> -16.41 </td>
+   <td style=""text-align:center;""> 6 </td>
+   <td style=""text-align:left;""> Corinne Pebody (NOC, UK) </td>
+   <td style=""text-align:left;""> BODC </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> OMEX1 </td>
+   <td style=""text-align:center;""> CD85 </td>
+   <td style=""text-align:center;""> 1994-04-24 </td>
+   <td style=""text-align:center;""> 49.33 </td>
+   <td style=""text-align:center;""> -11.92 </td>
+   <td style=""text-align:center;""> 19 </td>
+   <td style=""text-align:left;""> Richard  Lampitt (NOC, UK) </td>
+   <td style=""text-align:left;""> BODC </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> OMEX1 </td>
+   <td style=""text-align:center;""> DI217 </td>
+   <td style=""text-align:center;""> 1995-10-08 </td>
+   <td style=""text-align:center;""> 49.16 </td>
+   <td style=""text-align:center;""> -12.90 </td>
+   <td style=""text-align:center;""> 8 </td>
+   <td style=""text-align:left;""> Richard  Lampitt (NOC, UK) </td>
+   <td style=""text-align:left;""> BODC </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> OMEX1 </td>
+   <td style=""text-align:center;""> M30_1 </td>
+   <td style=""text-align:center;""> 1994-09-15 </td>
+   <td style=""text-align:center;""> 49.08 </td>
+   <td style=""text-align:center;""> -13.40 </td>
+   <td style=""text-align:center;""> 2 </td>
+   <td style=""text-align:left;""> Richard  Lampitt (NOC, UK) </td>
+   <td style=""text-align:left;""> BODC </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> PRIME </td>
+   <td style=""text-align:center;""> DI221 </td>
+   <td style=""text-align:center;""> 1996-06-22 </td>
+   <td style=""text-align:center;""> 59.04 </td>
+   <td style=""text-align:center;""> -20.23 </td>
+   <td style=""text-align:center;""> 32 </td>
+   <td style=""text-align:left;""> Hilary Kennedy (Bangor, UK) </td>
+   <td style=""text-align:left;""> BODC </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> Shelf Sea Biogeochemistry </td>
+   <td style=""text-align:center;""> DY026 </td>
+   <td style=""text-align:center;""> 2014-08-09 </td>
+   <td style=""text-align:center;""> 50.68 </td>
+   <td style=""text-align:center;""> -7.04 </td>
+   <td style=""text-align:center;""> 44 </td>
+   <td style=""text-align:left;""> Clare Davis (SOETS, HI) </td>
+   <td style=""text-align:left;""> BODC </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> SOLSTICE </td>
+   <td style=""text-align:center;""> EK188 </td>
+   <td style=""text-align:center;""> 2019-03-26 </td>
+   <td style=""text-align:center;""> -34.51 </td>
+   <td style=""text-align:center;""> 23.72 </td>
+   <td style=""text-align:center;""> 29 </td>
+   <td style=""text-align:left;""> Sari Giering (NOCS, UK) </td>
+   <td style=""text-align:left;""> BODC </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> SSB/GEOTRACES </td>
+   <td style=""text-align:center;""> DY018 </td>
+   <td style=""text-align:center;""> 2014-11-20 </td>
+   <td style=""text-align:center;""> 48.92 </td>
+   <td style=""text-align:center;""> -9.12 </td>
+   <td style=""text-align:center;""> 36 </td>
+   <td style=""text-align:left;""> Clare Davis (SOETS, HI) </td>
+   <td style=""text-align:left;""> BODC </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> SSB/GEOTRACES </td>
+   <td style=""text-align:center;""> DY029 </td>
+   <td style=""text-align:center;""> 2015-04-18 </td>
+   <td style=""text-align:center;""> 49.20 </td>
+   <td style=""text-align:center;""> -8.83 </td>
+   <td style=""text-align:center;""> 8 </td>
+   <td style=""text-align:left;""> Clare Davis (SOETS, HI) </td>
+   <td style=""text-align:left;""> BODC </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> SSB/GEOTRACES </td>
+   <td style=""text-align:center;""> DY033 </td>
+   <td style=""text-align:center;""> 2015-07-22 </td>
+   <td style=""text-align:center;""> 49.12 </td>
+   <td style=""text-align:center;""> -8.90 </td>
+   <td style=""text-align:center;""> 44 </td>
+   <td style=""text-align:left;""> Clare Davis (SOETS, HI) </td>
+   <td style=""text-align:left;""> BODC </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> UKOA_ThemeB </td>
+   <td style=""text-align:center;""> JR271 </td>
+   <td style=""text-align:center;""> 2012-06-18 </td>
+   <td style=""text-align:center;""> 71.88 </td>
+   <td style=""text-align:center;""> -1.66 </td>
+   <td style=""text-align:center;""> 17 </td>
+   <td style=""text-align:left;""> Helen Smith (Marine Scotland Science, UK) </td>
+   <td style=""text-align:left;""> BODC </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;""> UKOA_ThemeB </td>
+   <td style=""text-align:center;""> JR274 </td>
+   <td style=""text-align:center;""> 2013-01-25 </td>
+   <td style=""text-align:center;""> -53.45 </td>
+   <td style=""text-align:center;""> -37.56 </td>
+   <td style=""text-align:center;""> 38 </td>
+   <td style=""text-align:left;""> Emma Cavan (Imperial, UK) </td>
+   <td style=""text-align:left;""> BODC </td>
+  </tr>
+</tbody>
+</table>"
+"1","
+"

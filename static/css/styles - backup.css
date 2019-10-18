@@ -215,11 +215,6 @@ a {
   text-decoration: none;
 }
 
-.link {
-  color: #1F77B4;
-  text-decoration: none;
-}
-
 .image, figure img, img {
   width: 100%;
   box-shadow: 0 3px 3px #bbbbbb;
