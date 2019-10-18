@@ -29,7 +29,7 @@ palette <- c(brewer.pal(8, "Dark2"), brewer.pal(9, "Set1"))
 COL <- palette[as.numeric(as.factor(msc$Contact))]
 
 library(leaflet)
-leafMap <- leaflet(data=msc) %>% 
+leafMap <- leaflet(data=msc, width = "100%") %>% 
   addProviderTiles("Esri.OceanBasemap") %>%
   addCircleMarkers(~Long,~Lat,
                    color = COL,
@@ -55,7 +55,8 @@ options(kableExtra.html.bsTable = TRUE)
 
 overview %>%
 kable(caption = "Overview of MSC deployments", align=c("l","c","c","c","c","c","l")) %>%
-    kable_styling(bootstrap_options = c("striped", "hover"), font_size = 10)#
+    kable_styling(bootstrap_options = c("striped", "hover","responsive"), font_size = 11) %>%
+    scroll_box(width = "100%", box_css = "border: 1px solid #FFFFFF;")
 ```
 
 ## JETZON
