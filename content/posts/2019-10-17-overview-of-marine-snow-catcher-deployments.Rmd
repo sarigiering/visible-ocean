@@ -35,7 +35,8 @@ leafMap <- leaflet(data=msc, width = "100%") %>%
                    color = COL,
                    popup = content,
                    clusterOptions = markerClusterOptions(#freezeAtZoom = 5,
-                     disableClusteringAtZoom = 7)
+                   disableClusteringAtZoom = 5,
+                   zoomToBoundsOnClick = FALSE)
                    )
 leafMap
 ```
