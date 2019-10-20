@@ -4,6 +4,7 @@ date = 2019-09-24T15:42:28+01:00
 draft = true
 tags = ["Martin's b","flux attenuation","export", "reference depth", "transfer efficiency", "biological carbon pump"]
 categories = []
+featured_image = "img/pic01.jpg"
 +++
 
 Let's start by talking about export in the biological carbon pump (BCP). The term 'export' is often confused in the literature, and even those who are familiar with its definition may disagree and start heated debates about it. The main confusion here is the distinction between 'flux' and 'export' or 'export flux'. Flux in terms of the BCP is simply the amount of carbon (or any other component you are insterested in) that 'flows' in a known direction. The most obvious flux is that of sinking particles and the carbon they take with them to depth, but there are also other fluxes such as horizontal fluxes or upward fluxes (e.g. of floating diatoms)! Flux can occurr at any depth, so when you talk about 'flux' you should always give the reference depth - "Carbon flux at 200 m depth" - so that comparison between fluxes is meaningful. Easy!

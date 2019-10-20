@@ -16,4 +16,4 @@ blogdown::serve_site()
 
 #blogdown::new_post("Overview of Marine Snow Catcher deployments")
 
-servr::daemon_stop(4)
+servr::daemon_stop()

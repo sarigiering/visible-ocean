@@ -6,6 +6,7 @@ tags:
   - Marine Snow Catcher
 slug: overview-of-marine-snow-catcher-deployments
 draft: no
+featured_image: img/overview-of-marine-snow-catcher-deployments.jpg
 ---
 
 ## Marine Snow Catcher deployments
@@ -43,10 +44,11 @@ leafMap
 <br>
 
 ```{r overview-table, echo=FALSE, warning=FALSE}
-overview        <- aggregate(msc$Lat, by=list(msc$Repository,msc$Contact,msc$Cruise_code,msc$Programme), length)
-overview$Lat    <- round(aggregate(msc$Lat, by=list(msc$Programme,msc$Cruise_code,msc$Contact), mean, na.rm=T)$x*100)/100
-overview$Long   <- round(aggregate(msc$Long, by=list(msc$Programme,msc$Cruise_code,msc$Contact), mean, na.rm=T)$x*100)/100
-overview$Date   <- aggregate(msc$Date, by=list(msc$Programme,msc$Cruise_code,msc$Contact), min, na.rm=T)$x
+BY = list(msc$Repository,msc$Contact,msc$Cruise_code,msc$Programme)
+overview        <- aggregate(msc$Lat, by=BY, length)
+overview$Lat    <- round(aggregate(msc$Lat, by=BY, mean, na.rm=T)$x*100)/100
+overview$Long   <- round(aggregate(msc$Long, by=BY, mean, na.rm=T)$x*100)/100
+overview$Date   <- aggregate(msc$Date, by=BY, min, na.rm=T)$x
 names(overview) <- c("Repository","Contact","Cruise code","Programme","Deployments","Lat","Long","Date (earliest)")
 
 overview <- overview[,c("Programme","Cruise code","Date (earliest)","Lat","Long","Deployments","Contact","Repository")]

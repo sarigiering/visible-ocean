@@ -4,6 +4,7 @@ date = 2019-09-09T11:20:08-02:30
 draft = false
 tags = ["particles", "FlowCam", "vignette", "extraction"]
 categories = []
+featured_image = "img/2019_09_09_FlowCam_collage_example.png"
 +++
 
 FlowCam is a great device for imaging plankton samples. It takes photos of the particles in your sample and analyzes them using the provided software, VisualSpreadsheet, which carries out particle detection, classification, measurements, and statistical analyses. VisualSpreadsheet is great for most purposes, but sometimes you may want to access the individual particle images ('vignettes') for more flexible post-processing.

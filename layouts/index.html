@@ -1,0 +1,31 @@
+{{ define "main" }}
+
+<section id="home">
+        <ul>
+          {{ range $index, $page := first 10 (where .Site.RegularPages "Section" "in" .Site.Params.mainSections) }}
+          <li {{if eq $index 0}}class="first"{{end}}>
+            <h1><a href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a></h1> 
+            {{ partial "aside" . }}
+
+            <div style="overflow: auto;">
+              <div style="float: left; margin-right: 10px;">
+                {{if isset .Params "featured_image" }}
+                <img src="{{.Params.featured_image}}" alt="{{ .Title }}" 
+                onerror="this.style.visibility = 'hidden'"  style="width: 250px; height: 200px; object-fit: cover;" >
+                {{ end }}
+              </div>
+
+              <div>
+                <p style="margin-block-start:0px;">{{ .Summary }}</p>
+                {{ if .Truncated }}
+                <a href="{{ .RelPermalink }}">Read more&hellip;</a>
+              </div>
+            </div>
+
+            {{ end }}
+          </li>
+          {{ end }}
+        </ul>
+      </section>
+
+{{ end }}
