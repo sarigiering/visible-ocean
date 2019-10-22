@@ -11,9 +11,9 @@ meta = "false" #Do not display tags or categories
 <div style="overflow: auto;">
               <div style="float: left; margin-right: 10px;">
                 <img src="/img/me.jpg" 
-                onerror="this.style.visibility = 'hidden'"  style="width: 400px; object-fit: cover;" >
+                onerror="this.style.visibility = 'hidden'"  style="max-width: 400px;" >
               </div>
-              <div style="margin-block-start:0px;">
+              <div style="margin-block-start:0px; overflow: auto;">
               <p><b>Dr Sari Giering </b></p>
               <p>Senior Scientist, National Oceanography Centre</p>
               <p>
