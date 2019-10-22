@@ -13,7 +13,7 @@ meta = "false" #Do not display tags or categories
                 <img src="/img/me.jpg" 
                 onerror="this.style.visibility = 'hidden'"  style="max-width: 400px;" >
               </div>
-              <div style="margin-block-start:0px; overflow: auto;">
+              <div style="margin-block-start:0px">
               <p><b>Dr Sari Giering </b></p>
               <p>Senior Scientist, National Oceanography Centre</p>
               <p>
