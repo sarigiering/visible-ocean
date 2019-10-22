@@ -10,9 +10,9 @@ featured_image: img/overview-of-marine-snow-catcher-deployments.jpg
 ---
 
 ## Marine Snow Catcher deployments
-This map shows all MSC deployments that we know of. To get deployment details, click on a cluster and marker, and information about the programme, cruise and contact person will pop up. Each contact person has a different colour, so you know whether more than one contact person is in a cluster.
+This map shows all MSC deployments that I know of. To get deployment details, click on a cluster and marker, and information about the programme, cruise and contact person will pop up. Each contact person has a different colour, so you know whether more than one contact person is in a cluster.
 
-If you have deployed MSCs yourself but they are not on this map yet, please add details here ([link](https://docs.google.com/spreadsheets/d/1fg1nZG83Tn93oL3YvKCVMqvsX5Xo9Vz4532BX9BK4wQ/edit#gid=0))
+If you have deployed MSCs yourself but they are not on this map yet, please add details here (<a class="link" href="https://docs.google.com/spreadsheets/d/1fg1nZG83Tn93oL3YvKCVMqvsX5Xo9Vz4532BX9BK4wQ/edit#gid=0" target="_blank">link</a>)
 or contact me. (Your data will show up next time I render this page.)
 
 ```{R map, echo=FALSE, warning=FALSE}
@@ -67,11 +67,11 @@ As part of JETZON (Joint Exploration of the Twilight Zone Ocean Network), we hav
 
 * Particle flux measurements
     + (e.g. concentrations of particulate organic carbon)
-    + Google Sheet available
-
+    + You can access the template here: <a class="link" href="https://docs.google.com/spreadsheets/d/1fQ5fqvTcZYfcX8mGnwlnGQx4LchEKVm9pwi8yioMaD0/edit?usp=sharing" target="_blank">Template for sharing MSC fluxes</a>.
+    
 * Rate measurements on the different fractions 
     + (e.g. respiration, leucine uptake)
-    + Google Sheet available
+    + You can access the template here: <a class="link" href="https://docs.google.com/spreadsheets/d/1VgG9rad8LFj-kzUH7gIE3fAw4oIVst1yqUDLCKdu2ds/edit?usp=sharing" target="_blank">Template for sharing MSC rates</a>.
   
 * Metadata template for data submission to official repositories 
     + (saves you time)
