@@ -35,3 +35,8 @@ googleAnalytics= "UA-146268173-1"
     name = "Posts"
     weight = 20
     url = "https://sarigiering.github.io/posts/"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
