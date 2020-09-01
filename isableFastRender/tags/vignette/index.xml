@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vignette on Visible Ocean</title>
+    <link>http://localhost:1313/tags/vignette/</link>
+    <description>Recent content in vignette on Visible Ocean</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>Copyright &amp;copy; 2019 - Sari Giering</copyright>
+    <lastBuildDate>Mon, 09 Sep 2019 11:20:08 -0230</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/vignette/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Extract individual particle images from FlowCam</title>
+      <link>http://localhost:1313/posts/extract-individual-particle-images-from-flowcam/</link>
+      <pubDate>Mon, 09 Sep 2019 11:20:08 -0230</pubDate>
+      
+      <guid>http://localhost:1313/posts/extract-individual-particle-images-from-flowcam/</guid>
+      <description>FlowCam is a great device for imaging plankton samples. It takes photos of the particles in your sample and analyzes them using the provided software, VisualSpreadsheet, which carries out particle detection, classification, measurements, and statistical analyses.</description>
+    </item>
+    
+  </channel>
+</rss>

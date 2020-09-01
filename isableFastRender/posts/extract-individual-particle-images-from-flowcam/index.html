@@ -1,0 +1,290 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <title>Visible Ocean</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The HTML5 Herald" />
+  <meta name="author" content="Sari Giering" />
+  <meta name="generator" content="Hugo 0.61.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="http://localhost:1313/css/styles.css" />
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-146268173-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="http://localhost:1313/">Visible Ocean</a>
+            </h1>
+
+      <ul id="social-media">
+        
+        <li><a title="Twitter" href="https://twitter.com/sarigiering"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+          
+        <li><a title="GitHub" href="https://github.com/sarigiering"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a></li>
+            
+        <li><a title="NOCS Website" href="https://noc.ac.uk/people/slcg" target="_blank"><i class="fa fa-university fa-lg" aria-hidden="true"></i></i></a></li>
+         
+        <li><a title="Google Scholar" href="https://scholar.google.com/citations?user=_4M69t8AAAAJ%26hl" target="_blank"><i class="fa fa-graduation-cap fa-lg" aria-hidden="true"></i></i></a></li>
+        
+      </ul>
+      
+      <p><em>Ideas, codes and brainstorming for making sense of ocean data</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="https://sarigiering.github.io/">
+                <i class="fa-li fa  fa-lg"></i><span>Home</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://sarigiering.github.io/posts/">
+                <i class="fa-li fa  fa-lg"></i><span>Posts</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="http://localhost:1313/about/">
+                <i class="fa-li fa  fa-lg"></i><span>About</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>Extract individual particle images from FlowCam</h1>
+
+    
+        <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2019-09-09T11:20:08-02:30">Sep 9, 2019</time>
+        </li>
+        
+        
+
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="http://localhost:1313/tags/particles/">#particles</a>
+                
+                    , 
+                    <a href="http://localhost:1313/tags/flowcam/">#FlowCam</a>
+                
+                    , 
+                    <a href="http://localhost:1313/tags/vignette/">#vignette</a>
+                
+                    , 
+                    <a href="http://localhost:1313/tags/extraction/">#extraction</a>
+                
+            </em>
+        </li>
+        
+
+        <li>4 min read</li>
+    </ul>
+</aside>
+    
+
+    <p>FlowCam is a great device for imaging plankton samples. It takes photos of the particles in your sample and analyzes them using the provided software, VisualSpreadsheet, which carries out particle detection, classification, measurements, and statistical analyses. VisualSpreadsheet is great for most purposes, but sometimes you may want to access the individual particle images (&lsquo;vignettes&rsquo;) for more flexible post-processing.</p>
+<p>I here provide a code allowing you to extract the individual images. I assume that you have already analyzed several samples using FlowCam. In the near future, I will write a separate tutorial about what we found are the best settings to image marine snow.</p>
+<p><img src="http://localhost:1313/img/2019_09_09_FlowCam_collage_example.png" alt="Example of FlowCam collage image"></p>
+<h2 id="sample-folder-structure">Sample folder structure</h2>
+<p>After you run your sample through the FlowCam, you will have saved a sample folder containing the following files:</p>
+<ul>
+<li>cal_image_??????.tif</li>
+<li>&lt;<em>sample_name</em>&gt;.ctx</li>
+<li>&lt;<em>sample_name</em>&gt;.edg</li>
+<li>&lt;<em>sample_name</em>&gt;.lst</li>
+<li>&lt;<em>sample_name</em>&gt;_??????.tif</li>
+<li>&lt;<em>sample_name</em>&gt;_??????_bin.tif</li>
+<li>&lt;<em>sample_name</em>&gt;_run_summary.txt</li>
+</ul>
+<p>where ?????? is a six-digit number starting at 000001. The folder may contain several files of this type numbered sequentially.</p>
+<h2 id="access-individual-vignettes">Access individual vignettes</h2>
+<p>VisualSpreadsheet saves the individual vignettes in collage files. The information about each vignette and where it is located in the collage file is provided in the metadata table called <code>&lt;sample_name&gt;.lst</code>. To extract individual vignettes, I use the information provided in the metadata table.</p>
+<p>Note that the coordinates of the image are listed as you would for a matrix:</p>
+<ol>
+<li>start at top-left corner</li>
+<li>coordinates are given as [y,x], equivalent to [row,column]</li>
+</ol>
+<p>The position of the vignette in the composite image is provided by
+<em>image_y</em> and <em>image_x</em>. The height and width of the vignette are provided as:
+<em>image_h</em> and <em>image_2</em>.</p>
+<p>The code will fail if any of the collage images are missing.</p>
+<h2 id="set-up-your-directory-for-extraction">Set up your directory for extraction</h2>
+<p>Copy all sample folders that you want to have extracted in a folder; e.g. <code>~/&lt;Project_name&gt;/&lt;raw&gt;</code>. I named it &ldquo;raw&rdquo;, but you can name it anything you want.</p>
+<p>Run the code below. When prompted select the <code>&lt;raw&gt;</code> folder.</p>
+<p>Vignettes will be saved in a folder called <code>~/&lt;Project_name&gt;/Extracted</code>.</p>
+<p>This is how your directory might look like before you run the code:</p>
+<pre><code>.
+...
+├── &lt;Project_name&gt;
+|   ├── &lt;raw&gt;
+|   |   ├── &lt;Sample_1&gt;
+|   |   |   ├── *.lst
+|   |   |   ├── *_000001.tif
+|   |   |   ...
+|   |   ├── &lt;Sample_2&gt;
+|   |   |   ├── *.lst
+|   |   |   ├── *_000001.tif
+|   |   |   ...
+...
+</code></pre><p>After extraction, you will find a new folder (&ldquo;Extracted&rdquo;) in your project folder containing subfolders for each sample with the extracted vignettes.</p>
+<pre><code>.
+...
+├── &lt;Project_name&gt;
+|   ├── ...
+|   └── Extracted
+|   |   ├── &lt;Sample_1&gt;
+|   |   |   ├── *_vign000001.png
+|   |   |   ├── *_vign000002.png
+|   |   |   ...
+|   |   ├── &lt;Sample_2&gt;
+|   |   |   ├── *_vign000001.png
+|   |   |   ├── *_vign000002.png
+|   |   |   ...
+...
+</code></pre><h2 id="code">Code</h2>
+<p>Copy-paste the code below into your Python environment (e.g. Spyder). You should not have to change anything in the code, though you may have to install some of the packages. To extract your vignettes, simply select the entire code and run everything (Ctrl+A, Ctrl+Enter).</p>
+<p>The code will extract all vignettes in your selected <code>&lt;raw&gt;</code> folder, even if they have previously been extracted. So, don't forget to remove the files that you don't want to extract again or choose a different <code>&lt;raw&gt;</code> folder.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#75715e"># Python 3.7</span>
+<span style="color:#f92672">import</span> os<span style="color:#f92672">,</span> os.path
+<span style="color:#f92672">import</span> pandas
+<span style="color:#f92672">import</span> cv2
+<span style="color:#f92672">import</span> tkinter <span style="color:#f92672">as</span> tk
+<span style="color:#f92672">from</span> tkinter <span style="color:#f92672">import</span> filedialog
+
+<span style="color:#75715e"># prompt for input folder (&lt;raw&gt;)</span>
+root <span style="color:#f92672">=</span> tk<span style="color:#f92672">.</span>Tk()
+root<span style="color:#f92672">.</span>attributes(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">-topmost</span><span style="color:#e6db74">&#39;</span>, <span style="color:#ae81ff">1</span>)
+root<span style="color:#f92672">.</span>withdraw()
+raw_folder_path <span style="color:#f92672">=</span> filedialog<span style="color:#f92672">.</span>askdirectory()
+root<span style="color:#f92672">.</span>update()
+os<span style="color:#f92672">.</span>chdir(raw_folder_path)
+
+<span style="color:#75715e"># make directory for extraction</span>
+extract_folder_path <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>dirname(raw_folder_path),<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Extracted</span><span style="color:#e6db74">&#34;</span>)
+<span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(extract_folder_path): os<span style="color:#f92672">.</span>mkdir(extract_folder_path)
+
+<span style="color:#75715e"># print folder names</span>
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Selected folder: </span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">+</span> raw_folder_path)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Files will be extracted to: </span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">+</span> extract_folder_path)
+
+<span style="color:#75715e"># walk through raw folder for samples to be extracted</span>
+<span style="color:#66d9ef">for</span> dirpath, dirnames, filenames <span style="color:#f92672">in</span> os<span style="color:#f92672">.</span>walk(raw_folder_path):
+    <span style="color:#66d9ef">for</span> filename <span style="color:#f92672">in</span> [f <span style="color:#66d9ef">for</span> f <span style="color:#f92672">in</span> filenames <span style="color:#66d9ef">if</span> f<span style="color:#f92672">.</span>endswith(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">.lst</span><span style="color:#e6db74">&#34;</span>)]:
+        
+        <span style="color:#75715e"># find sample name</span>
+        sample_name <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>splitext(filename)[<span style="color:#ae81ff">0</span>]
+        
+        <span style="color:#75715e"># create output directory for extracted vignettes</span>
+        sample_outpath <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(extract_folder_path,sample_name)
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(sample_outpath): os<span style="color:#f92672">.</span>mkdir(sample_outpath)
+        
+        <span style="color:#75715e"># get path for .lst file</span>
+        fp <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(dirpath, filename)
+ 
+        <span style="color:#75715e"># read header of .lst file</span>
+        header <span style="color:#f92672">=</span> pandas<span style="color:#f92672">.</span>read_csv(fp, sep<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">|</span><span style="color:#e6db74">&#39;</span>, skiprows<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, nrows<span style="color:#f92672">=</span><span style="color:#ae81ff">65</span>)
+        hd <span style="color:#f92672">=</span> list(header[<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">num-fields</span><span style="color:#e6db74">&#34;</span>])
+        
+        <span style="color:#75715e"># read .lst file and apply header</span>
+        meta <span style="color:#f92672">=</span> pandas<span style="color:#f92672">.</span>read_csv(fp, sep<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">|</span><span style="color:#e6db74">&#39;</span>, skiprows<span style="color:#f92672">=</span><span style="color:#ae81ff">67</span>, header<span style="color:#f92672">=</span>None)
+        meta<span style="color:#f92672">.</span>columns <span style="color:#f92672">=</span> hd
+        
+        <span style="color:#75715e"># cheat for loading collage file</span>
+        loaded_cp <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">not_loaded</span><span style="color:#e6db74">&#34;</span>
+        
+        <span style="color:#75715e"># loop through meta data to extract and save individual vignettes </span>
+        <span style="color:#66d9ef">for</span> id <span style="color:#f92672">in</span> meta[<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">id</span><span style="color:#e6db74">&#34;</span>]:  
+            i <span style="color:#f92672">=</span> id<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+            
+            <span style="color:#75715e"># find collage name and path</span>
+            collage_filename <span style="color:#f92672">=</span> meta[<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">collage_file</span><span style="color:#e6db74">&#34;</span>][i]
+            cp <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(dirpath, collage_filename)
+           
+            <span style="color:#75715e"># load collage image if not already loaded         </span>
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> cp <span style="color:#f92672">==</span> loaded_cp: 
+                collage <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imread(cp)
+                loaded_cp <span style="color:#f92672">=</span> cp
+           
+            <span style="color:#75715e"># extract vignette</span>
+            img_sub <span style="color:#f92672">=</span> collage[meta[<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">image_y</span><span style="color:#e6db74">&#34;</span>][i]:(meta[<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">image_y</span><span style="color:#e6db74">&#34;</span>][i]<span style="color:#f92672">+</span>meta[<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">image_h</span><span style="color:#e6db74">&#34;</span>][i]), meta[<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">image_x</span><span style="color:#e6db74">&#34;</span>][i]:(meta[<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">image_x</span><span style="color:#e6db74">&#34;</span>][i]<span style="color:#f92672">+</span>meta[<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">image_w</span><span style="color:#e6db74">&#34;</span>][i])]
+            
+            <span style="color:#75715e"># save vignette</span>
+            vp <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(sample_outpath, sample_name<span style="color:#f92672">+</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">_vign</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">+</span>f<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{id:06d}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">+</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">.png</span><span style="color:#e6db74">&#34;</span>) 
+            cv2<span style="color:#f92672">.</span>imwrite(vp, img_sub)
+        
+        <span style="color:#75715e"># print name of extracted sample when finished</span>
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Vignettes extracted: </span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">+</span> sample_name)
+</code></pre></div>
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="http://localhost:1313/posts/how-many-particles-computing-normalized-particle-size-spectra/"><i class="fa fa-chevron-circle-left"></i> How many particles? Computing normalized particle size spectra</a>
+        </li>
+        
+        
+        <li>
+            <a href="http://localhost:1313/posts/overview-of-marine-snow-catcher-deployments/">Overview of Marine Snow Catcher deployments <i class="fa fa-chevron-circle-right"></i> </a>
+        </li>
+        
+    </ul>
+</section>
+    
+
+
+
+
+
+</main>
+    <footer>
+        <h6>Copyright © 2019 - Sari Giering | 
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="http://localhost:1313/index.xml">Subscribe</a></h6>
+    </footer>
+</div>
+<script src="http://localhost:1313/js/scripts.js"></script>
+<script data-no-instant>document.write('<script src="/livereload.js?port=1313&mindelay=10&v=2"></' + 'script>')</script></body>
+
+</html>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://localhost:1313/about/</loc>
+    <lastmod>2018-03-03T13:50:49+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/tags/marine-snow-catcher/</loc>
+    <lastmod>2019-10-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/posts/overview-of-marine-snow-catcher-deployments/</loc>
+    <lastmod>2019-10-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2019-10-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2019-10-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2019-10-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/posts/extract-individual-particle-images-from-flowcam/</loc>
+    <lastmod>2019-09-09T11:20:08-02:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/tags/extraction/</loc>
+    <lastmod>2019-09-09T11:20:08-02:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/tags/flowcam/</loc>
+    <lastmod>2019-09-09T11:20:08-02:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/tags/particles/</loc>
+    <lastmod>2019-09-09T11:20:08-02:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/tags/vignette/</loc>
+    <lastmod>2019-09-09T11:20:08-02:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/posts/how-many-particles-computing-normalized-particle-size-spectra/</loc>
+    <lastmod>2019-08-22T13:55:12-02:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/tags/size-spectrum/</loc>
+    <lastmod>2019-08-22T13:55:12-02:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/categories/</loc>
+  </url>
+  
+</urlset>

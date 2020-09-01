@@ -6,8 +6,6 @@ weight = "30" #Right-most nav item
 meta = "false" #Do not display tags or categories
 +++
 
-
-
 <div style="overflow: auto;">
               <div style="float: left; margin-right: 10px;">
                 <img src="/img/me.jpg" 
@@ -29,3 +27,7 @@ meta = "false" #Do not display tags or categories
 I am a kitesurfer, runner and marine biogeochemist, who loves data and the curious ways in which carbon cycles through the ocean twilight zone.
 
 > Things take longer to happen than you think they will, and then they happen much faster than you thought they could. </br> <small>Rudi Dornbusch</small>
+
+text
+
+> Leadership is the art of getting someone else to do something you want done because he wants to do it. <br><small> President DD Eisenhower</small> 

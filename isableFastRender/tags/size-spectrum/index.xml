@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>size spectrum on Visible Ocean</title>
+    <link>http://localhost:1313/tags/size-spectrum/</link>
+    <description>Recent content in size spectrum on Visible Ocean</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>Copyright &amp;copy; 2019 - Sari Giering</copyright>
+    <lastBuildDate>Thu, 22 Aug 2019 13:55:12 -0230</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/size-spectrum/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How many particles? Computing normalized particle size spectra</title>
+      <link>http://localhost:1313/posts/how-many-particles-computing-normalized-particle-size-spectra/</link>
+      <pubDate>Thu, 22 Aug 2019 13:55:12 -0230</pubDate>
+      
+      <guid>http://localhost:1313/posts/how-many-particles-computing-normalized-particle-size-spectra/</guid>
+      <description>Using size spectra to describe the ocean ecosystem is the new craze, particularly as in situ imaging devices are becoming cheaper and more capable. The theory behind it is simple: Small particles, such as bacteria and phytoplankton, are numerous, while large particles, such as whales, are sparse.</description>
+    </item>
+    
+  </channel>
+</rss>

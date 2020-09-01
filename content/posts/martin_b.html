@@ -1,0 +1,165 @@
+---
+title: "Finding Martin's b - Fitting a Martin curve to vertical flux profiles"
+author: Sari Giering
+date: "2020-09-01"
+tags:
+  - Martin curve
+  - Flux fitting
+slug: Finding Martin's b
+draft: true
+weight: 1
+featured_image: img/Martin_curve_cover.jpg
+---
+
+
+
+<p>When we look at what sinking matter in the ocean is up to, one of the key metrics is describing the decrease of flux with depth (the ‘flux attenuation’). As particles sink, they get reworked and eaten by the animals and microbes living in the deep ocean. The result is that the amount of sinking particles gets less and less the deeper we go.</p>
+<p>In reality, the decrease in flux is not “smooth”: There may be a region where flux decreases very rapidly, in some depths very little happens to the flux, and occasionally we even see an increase in flux at depth. Nonetheless, to compare one site to another, it is convenient to use a simple mathematical description of the flux attenuation profile. By far the most popular choice is to fit a ‘Martin curve’.</p>
+<div id="the-martin-curve---a-brief-history" class="section level2">
+<h2>The Martin curve - a brief history</h2>
+<p>As part of the VERTEX study, Martin and his colleages compiled particulate organic carbon fluxes measured using neutrally buoyant sediment traps across several locations in the Pacific. The resulting vertical profile revealed a rapid decrease of flux in the upper 200-300 m. Below this depth, flux decrease appeared to be less pronounced. After trying to fit several mathematical curves to this depth profile, Martin <em>et al.</em> (1987) found that a power-law function fitted the data best. As this curve was chosen because it fitted the data best, and not because of any underlying scientific reasons, we refer to it as an ‘empirical’ fit.</p>
+<p>Surprisingly, the power-law function describes flux profiles very nicely almost everywhere in the ocean. Yet, we are still trying to understand precisely why the power-law function works so well. So, even now, our flux fitting is still empirical!</p>
+<div class="figure">
+<img src="/img/Martin_curve.jpg" alt="The infamous plot that yielded Martin’s b: A compilation of trap-derived particulate organic carbon fluxes in the Pacific suggest that the best line is Flux at depth z = 1.53(z/100)-0.858 (R2 = 0.81, n = 48)." />
+<p class="caption">The infamous plot that yielded Martin’s b: A compilation of trap-derived particulate organic carbon fluxes in the Pacific suggest that the best line is Flux at depth <em>z</em> = 1.53(<em>z</em>/100)<sup>-0.858</sup> (R<sup>2</sup> = 0.81, n = 48).</p>
+</div>
+<p>We refer to the exponent in the power-law function as <em>b</em>. In the original curve, <em>b</em> = 0.86, and this value is often used in models. Watch out when people talk about ‘Martin’s <em>b</em>’ and ‘the <em>b</em>-value’: Some are referrring to the exact value (i.e. <em>b</em> = 0.86) or a curve fitted with this value, whereas others are referring to a general power-law fit on vertical flux profiles (so <em>b</em> could be anything). Also, as flux profiles generally decrease with depth (though checkout Giering <em>et al. 2016</em>), negative and positive <em>b</em> values are used interchangeably, i.e. -0.86 and 0.86 refer to the same flux profile.</p>
+<p>Globally, the <em>b</em> value has been shown to range widely, typically between ~0.4 and ~2.0.</p>
+</div>
+<div id="so-what-is-power-law-and-how-do-i-use-it" class="section level2">
+<h2>So what is power-law, and how do I use it?</h2>
+<p>Fitting a power-law is super easy. The mathematical form is</p>
+<p>F<sub>z</sub> = F<sub>z0</sub>(z/z0)<sup>b</sup>,</p>
+<p>where F is flux, z is the depth where you measured flux, z0 is a reference depth (e.g. 100 m or your mixed layer depth), and <em>b</em> is the exponent you are after. So, F<sub>z</sub> is the flux you measured at depth z. To get F<sub>z0</sub> and <em>b</em>, you use log-log transformation and fit a linear regression. The slope will be your <em>b</em> and the intercept is the log of F<sub>z0</sub>.</p>
+<p>Let’s visualize this with some numbers. I here use the example of a vertical flux profile I collected at the Porcupine Abyssal Plain (PAP) site in the North Atlantic (Giering et al. 2014).</p>
+<pre class="r"><code>  # Depth of sediment traps
+  z   &lt;-c(51, 184, 312, 446, 589)
+  
+  # POC flux 
+  POC &lt;- c(83.96, 29.45, 18.13, 15.81, 17.38)
+  
+  # Plot vertical profile (note that depth is on the y-axis)
+  plot(z ~ POC, ylim=c(800,0), xlim=c(0,100), frame=F, yaxt=&quot;n&quot;, xaxt=&quot;n&quot;, ylab=&quot;&quot;, xlab=&quot;&quot;, pch=16)
+      # add y-axis
+    axis(3, pos=0)
+      mtext(&quot;Depth (m)&quot;, side=2, line=2, cex=1.2)
+      # add x-axis
+      axis(2, pos=0)
+      mtext(expression(paste(&quot;POC (mg C &quot;, m^-2 ,&quot; &quot;, d^-1 ,&quot;)&quot;,sep=&quot;&quot;)), side=3, line= 2, cex=1.2)</code></pre>
+<p><img src="/posts/martin_b_files/figure-html/Flux-profile-1.png" width="672" /></p>
+<p>The plot shows a clear decrease of flux with increasing depth - just as we would have expected.</p>
+<p>We now plot the log-log transformed data to get our power-law fit. Note that the axes can be confusing. For the linear regression, you plot the explanatory variable (here: depth) on the x-axis and the response variable (here: flux) on the y-axis.</p>
+<p>We also need to choose our refererence depth <em>z0</em>. In my case, I used the base of the mixed layer (~50 m). Note, that the depth you choose only affects the intercept (F<sub>z0</sub>) and not the slope (<em>b</em>). The choice of reference depth is more important in terms of ecosystem interpretation.</p>
+<pre class="r"><code>  # Define reference depth
+  z0 &lt;- 50
+
+  # Plot log-log transformed data to check fit
+  plot(log(POC) ~ log(z/z0))
+
+  # Linear regression on log-log transformed data
+  model &lt;- lm(log(POC) ~ log(z/z0))
+  
+  # Add regression line
+  abline(model, col=&quot;grey&quot;, lwd=2, lty=2)</code></pre>
+<p><img src="/posts/martin_b_files/figure-html/log-log-transformation-1.png" width="672" /></p>
+<pre class="r"><code>  # Summary of linear regression
+  summary(model)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = log(POC) ~ log(z/z0))
+## 
+## Residuals:
+##        1        2        3        4        5 
+##  0.08436 -0.06398 -0.17900 -0.06549  0.22411 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  4.35986    0.16684  26.132 0.000123 ***
+## log(z/z0)   -0.70088    0.09349  -7.496 0.004918 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.1805 on 3 degrees of freedom
+## Multiple R-squared:  0.9493, Adjusted R-squared:  0.9324 
+## F-statistic:  56.2 on 1 and 3 DF,  p-value: 0.004918</code></pre>
+<p>The fit to the log-log transformed data looks alright. The regression summary suggest a highly significant relationship (overall p-value &lt; 0.01), and the adjusted R-squared value suggests that depth explains 93% of the observed variability in measured flux. In other words: I am very happy with the fit.</p>
+<p>The intercept and slope can be found in the first column (‘Estimate’) of the ‘Coefficients’ section:</p>
+<ul>
+<li>‘(Intercept)’ is the intercept</li>
+<li>‘log(z/z0)’ is the slope</li>
+</ul>
+<p>The <em>b</em>-value is the slope. You can extract it like this.</p>
+<pre class="r"><code>  coef(model)[2]</code></pre>
+<pre><code>##  log(z/z0) 
+## -0.7008782</code></pre>
+<p>The uncertainty on this <em>b</em> value is in the second column (‘Std. Error’):</p>
+<pre class="r"><code>  summary(model)$coef[2,2]</code></pre>
+<pre><code>## [1] 0.09349499</code></pre>
+<p>So, our <em>b</em>-value for the PAP site was 0.70±0.9.</p>
+<p>We can fit this regression line to the original flux profile. I use the predict function, which calculates the flux at each depth based on the regression line. In this example, I want to know the flux at all depths between 50 and 800 m depth. Note that I need to back-transform the prediction using <em>exp()</em>.</p>
+<pre class="r"><code>  # Plot vertical profile (note that depth is on the y-axis)
+  plot(z ~ POC, ylim=c(800,0), xlim=c(0,100), frame=F, yaxt=&quot;n&quot;, xaxt=&quot;n&quot;, ylab=&quot;&quot;, xlab=&quot;&quot;, pch=16)
+      # add y-axis
+    axis(3, pos=0)
+      mtext(&quot;Depth (m)&quot;, side=2, line= 2, cex=1.2)
+      # add x-axis
+      axis(2, pos=0)
+      mtext(expression(paste(&quot;POC (mg C &quot;, m^-2 ,&quot; &quot;, d^-1 ,&quot;)&quot;,sep=&quot;&quot;)), side=3, line= 2, cex=1.2)
+
+    # Depths I want to predict
+    z_predict &lt;- 50:800
+      
+    # Predict flux (note the back-transformation)
+    F_predict &lt;- exp(predict(model, list(z=z_predict)))
+    
+    # Fit linear regression
+    lines(F_predict, z_predict, lwd=2)  </code></pre>
+<p><img src="/posts/martin_b_files/figure-html/Flux-profile-fitted-1.png" width="672" /></p>
+<p>The fit does not look too bad, though it may underestimate the fluxes below 500 m depth.</p>
+</div>
+<div id="comparison-to-other-sites" class="section level2">
+<h2>Comparison to other sites</h2>
+<p>Another nice feature of this calculation is that you can estimate the flux at any given depth. For example, you want to compare this site to another site where you only know the flux at 100 m depth.</p>
+<pre class="r"><code>  exp(predict(model, list(z=100)))</code></pre>
+<pre><code>##        1 
+## 48.13685</code></pre>
+<p>So, our best guess for the flux at 100 m depth is 48 mg C m<sup>-2</sup> d<sup>-1</sup>.</p>
+<p>Last, I want to visualize how the flux attenuation at the PAP site compares to Martin’s flux attenuation (<em>b</em> = 0.86).
+Important for this comparison is that you start at the same ‘input’ flux (i.e. you should use the same reference flux, F<sub>z0</sub>). Check out the paper by Buesseler <em>et al.</em> (2007) for a nice case study.</p>
+<pre class="r"><code>  # Plot vertical profile (note that depth is on the y-axis)
+  plot(z ~ POC, ylim=c(800,0), xlim=c(0,100), frame=F, yaxt=&quot;n&quot;, xaxt=&quot;n&quot;, ylab=&quot;&quot;, xlab=&quot;&quot;, pch=16)
+      # add y-axis
+    axis(3, pos=0)
+      mtext(&quot;Depth (m)&quot;, side=2, line= 2, cex=1.2)
+      # add x-axis
+      axis(2, pos=0)
+      mtext(expression(paste(&quot;POC (mg C &quot;, m^-2 ,&quot; &quot;, d^-1 ,&quot;)&quot;,sep=&quot;&quot;)), side=3, line= 2, cex=1.2)
+
+    # Add our prediction
+    lines(F_predict, z_predict, lwd=2)
+    
+    # -------------------------------------
+    # Depth range I want to model
+    z_new &lt;- 50:800
+    
+    # Extract your reference depth (i.e. the slope)
+    F_z0 &lt;- coef(model)[1]
+    
+    # Predict fluxes if b was 0.86. Remember to use the original equation and to back-transform.
+    F_Martin &lt;- exp(-0.86 * log(z_new/z0) + F_z0)
+    
+    # Add Martin&#39;s curve
+    lines(F_Martin, z_new, lty=2, lwd=2, col=&quot;grey&quot;)
+    
+    # Add legend
+    legend(&quot;bottomright&quot;, legend=c(&quot;PAP&quot;, &quot;Martin&quot;), col=c(1, &quot;grey&quot;), lwd=2, lty=c(1,2), bty=&quot;n&quot;)</code></pre>
+<p><img src="/posts/martin_b_files/figure-html/Flux-profile-fitted2-1.png" width="672" /></p>
+<p>The plot shows that, at the PAP site (<em>b</em> = 0.70), more of the surface flux reached the lower mesopelagic than expected from the Martin curve (<em>b</em> = 0.86).</p>
+</div>
+<div id="references" class="section level2">
+<h2>References:</h2>
+<p>Buesseler <em>et al.</em> (2007) Revisiting carbon flux through the ocean’s twilight zone. Nature 316:567-570. doi: 10.1126/science.1137959.</p>
+<p>Giering SLC, R Sanders, TR Anderson, RS Lampitt, C Tamburini, M Boutrif, M Zubkov, CM Marsay, SA Henson, K Cook, DJ Mayor (2014). Reconciliation of the carbon budget in the ocean’s twilight zone. Nature 507: 480-483. <a href="doi:10.1038/nature13123" class="uri">doi:10.1038/nature13123</a>.</p>
+<p>Giering SLC, R Sanders, AP Martin SA Henson, JS Riley, CM Marsay &amp; DG Johns (2016) Particle flux in the oceans: Challenging the steady state assumption. Global Biogeochemical Cycles 31(1):159-171. <a href="doi:10.1002/2016GB005424" class="uri">doi:10.1002/2016GB005424</a>.</p>
+<p>Martin JH, GA Knauer, DM Karl &amp; WW Broenkow (1987) VERTEX: carbon cycling in the northeast Pacific. Deep-Sea Research 34(2):267-285.</p>
+</div>

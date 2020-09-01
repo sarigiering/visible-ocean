@@ -1,3 +1,0 @@
-
-# produce random value around mean with sd
-rnorm(1, mean = 10, sd = 1)
