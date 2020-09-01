@@ -6,7 +6,7 @@ tags:
   - Martin curve
   - Flux fitting
 slug: Finding Martin's b
-draft: true
+draft: no
 weight: 1
 featured_image: img/Martin_curve_cover.jpg
 ---
