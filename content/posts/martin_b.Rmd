@@ -17,13 +17,13 @@ In reality, the decrease in flux is not "smooth": There may be a region where fl
 
 ## The Martin curve - a brief history
 
-As part of the VERTEX study, Martin and his colleages compiled particulate organic carbon fluxes measured using neutrally buoyant sediment traps across several locations in the Pacific. The resulting vertical profile revealed a rapid decrease of flux in the upper 200-300 m. Below this depth, flux decrease appeared to be less pronounced. After trying to fit several mathematical curves to this depth profile, Martin _et al._ (1987) found that a power-law function fitted the data best. As this curve was chosen because it fitted the data best, and not because of any underlying scientific reasons, we refer to it as an 'empirical' fit.
+As part of the VERTEX study, Martin and his colleagues compiled particulate organic carbon fluxes measured using neutrally buoyant sediment traps across several locations in the Pacific. The resulting vertical profile revealed a rapid decrease of flux in the upper 200-300 m. Below this depth, flux decrease appeared to be less pronounced. After trying to fit several mathematical curves to this depth profile, Martin _et al._ (1987) found that a power-law function fitted the data best. As this curve was chosen because it fitted the data best, and not because of any underlying scientific reasons, we refer to it as an 'empirical' fit.
 
 Surprisingly, the power-law function describes flux profiles very nicely almost everywhere in the ocean. Yet, we are still trying to understand precisely why the power-law function works so well. So, even now, our flux fitting is still empirical!
 
 ![The infamous plot that yielded Martin's b: A compilation of trap-derived particulate organic carbon fluxes in the Pacific suggest that the best line is Flux at depth _z_ = 1.53(_z_/100)<sup>-0.858</sup> (R<sup>2</sup> = 0.81, n = 48).](/img/Martin_curve.jpg)
 
-We refer to the exponent in the power-law function as _b_. In the original curve, _b_ = 0.86, and this value is often used in models. Watch out when people talk about 'Martin's _b_' and 'the _b_-value': Some are referrring to the exact value (i.e. _b_ = 0.86) or a curve fitted with this value, whereas others are referring to a general power-law fit on vertical flux profiles (so _b_ could be anything). Also, as flux profiles generally decrease with depth (though checkout Giering _et al. 2016_), negative and positive _b_ values are used interchangeably, i.e. -0.86 and 0.86 refer to the same flux profile.
+We refer to the exponent in the power-law function as _b_. In the original curve, _b_ = 0.86, and this value is often used in models. Watch out when people talk about 'Martin's _b_' and 'the _b_-value': Some are referring to the exact value (i.e. _b_ = 0.86) or a curve fitted with this value, whereas others are referring to a general power-law fit on vertical flux profiles (so _b_ could be anything). Also, as flux profiles generally decrease with depth (though checkout Giering _et al. 2016_), negative and positive _b_ values are used interchangeably, i.e. -0.86 and 0.86 refer to the same flux profile.
 
 
 Globally, the _b_ value has been shown to range widely, typically between ~0.4 and ~2.0. 
@@ -56,11 +56,11 @@ Let's visualize this with some numbers. I here use the example of a vertical flu
 ```
 
 
-The plot shows a clear decrease of flux with increasing depth - just as we would have expected.
+The plot shows a clear decrease in flux with increasing depth - just as we would have expected.
 
 We now plot the log-log transformed data to get our power-law fit. Note that the axes can be confusing. For the linear regression, you plot the explanatory variable (here: depth) on the x-axis and the response variable (here: flux) on the y-axis.
 
-We also need to choose our refererence depth _z0_. In my case, I used the base of the mixed layer (~50 m). Note, that the depth you choose only affects the intercept (F<sub>z0</sub>) and not the slope (_b_). The choice of reference depth is more important in terms of ecosystem interpretation.
+We also need to choose our reference depth _z0_. In my case, I used the base of the mixed layer (~50 m). Note, that the depth you choose only affects the intercept (F<sub>z0</sub>) and not the slope (_b_). The choice of reference depth is more important in terms of ecosystem interpretation.
 
 ```{r log-log-transformation}
   # Define reference depth
@@ -79,7 +79,7 @@ We also need to choose our refererence depth _z0_. In my case, I used the base o
   summary(model)
 ```
 
-The fit to the log-log transformed data looks alright. The regression summary suggest a highly significant relationship (overall p-value < 0.01), and the adjusted R-squared value suggests that depth explains 93% of the observed variability in measured flux. In other words: I am very happy with the fit.
+The fit to the log-log transformed data looks alright. The regression summary suggests a highly significant relationship (overall p-value < 0.01), and the adjusted R-squared value suggests that depth explains 93% of the observed variability in measured flux. In other words: I am very happy with the fit.
 
 The intercept and slope can be found in the first column ('Estimate') of the 'Coefficients' section:
 
