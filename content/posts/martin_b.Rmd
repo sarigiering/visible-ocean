@@ -23,7 +23,7 @@ Surprisingly, the power-law function describes flux profiles very nicely almost 
 
 ![The infamous plot that yielded Martin's b: A compilation of trap-derived particulate organic carbon fluxes in the Pacific suggest that the best line is Flux at depth _z_ = 1.53(_z_/100)<sup>-0.858</sup> (R<sup>2</sup> = 0.81, n = 48).](/img/Martin_curve.jpg)
 
-We refer to the exponent in the power-law function as _b_. In the original curve, _b_ = 0.86, and this value is often used in models. Watch out when people talk about 'Martin's _b_' and 'the _b_-value': Some are referring to the exact value (i.e. _b_ = 0.86) or a curve fitted with this value, whereas others are referring to a general power-law fit on vertical flux profiles (so _b_ could be anything). Also, as flux profiles generally decrease with depth (though checkout Giering _et al. 2016_), negative and positive _b_ values are used interchangeably, i.e. -0.86 and 0.86 refer to the same flux profile.
+We refer to the exponent in the power-law function as _b_. In the original curve, _b_ = 0.86, and this value is often used in models. Watch out when people talk about 'Martin's _b_' and 'the _b_-value': Some are referring to the exact value (i.e. _b_ = 0.86) or a curve fitted with this value, whereas others are referring to a general power-law fit on vertical flux profiles (so _b_ could be anything). Also, as flux profiles generally decrease with depth (though checkout Giering _et al._ 2016), negative and positive _b_ values are used interchangeably, i.e. -0.86 and 0.86 refer to the same flux profile.
 
 
 Globally, the _b_ value has been shown to range widely, typically between ~0.4 and ~2.0. 
@@ -36,7 +36,7 @@ F<sub>z</sub> = F<sub>z0</sub>(z/z0)<sup>b</sup>,
 
 where F is flux, z is the depth where you measured flux, z0 is a reference depth (e.g. 100 m or your mixed layer depth), and _b_ is the exponent you are after. So, F<sub>z</sub> is the flux you measured at depth z. To get F<sub>z0</sub> and _b_, you use log-log transformation and fit a linear regression. The slope will be your _b_ and the intercept is the log of F<sub>z0</sub>.
 
-Let's visualize this with some numbers. I here use the example of a vertical flux profile I collected at the Porcupine Abyssal Plain (PAP) site in the North Atlantic (Giering et al. 2014).
+Let's visualize this with some numbers. I here use the example of a vertical flux profile I collected at the Porcupine Abyssal Plain (PAP) site in the North Atlantic (Giering _et al._ 2014).
 
 ```{r Flux-profile}
   # Depth of sediment traps
@@ -89,16 +89,18 @@ The intercept and slope can be found in the first column ('Estimate') of the 'Co
 The _b_-value is the slope. You can extract it like this.
 
 ```{r slope}
+  # Extract slope
   coef(model)[2]
 ```
 
 The uncertainty on this _b_ value is in the second column ('Std. Error'):
 
 ```{r slope-uncertainty}
+  # Extract uncertainty of slope
   summary(model)$coef[2,2]
 ```
 
-So, our _b_-value for the PAP site was 0.70&plusmn;0.9.
+So, our _b_-value for the PAP site was 0.70&plusmn;0.09.
 
 We can fit this regression line to the original flux profile. I use the predict function, which calculates the flux at each depth based on the regression line. In this example, I want to know the flux at all depths between 50 and 800 m depth. Note that I need to back-transform the prediction using _exp()_.
 
@@ -125,15 +127,16 @@ We can fit this regression line to the original flux profile. I use the predict 
 The fit does not look too bad, though it may underestimate the fluxes below 500 m depth.
 
 ## Comparison to other sites
-Another nice feature of this calculation is that you can estimate the flux at any given depth. For example, you want to compare this site to another site where you only know the flux at 100 m depth.
+Another nice feature of this calculation is that you can estimate the flux at any given depth. For example, you might want to compare this site to another site where you only know the flux at 100 m depth.
 
 ```{r Predicted-flux}
+  # Calculate flux at 100 m depth
   exp(predict(model, list(z=100)))
 ```
 So, our best guess for the flux at 100 m depth is 48 mg C m<sup>-2</sup> d<sup>-1</sup>.
 
 Last, I want to visualize how the flux attenuation at the PAP site compares to Martin's flux attenuation (_b_ = 0.86).
-Important for this comparison is that you start at the same 'input' flux (i.e. you should use the same reference flux, F<sub>z0</sub>). Check out the paper by Buesseler _et al._ (2007) for a nice case study.
+Important for this comparison is that you start with the same 'input' flux (i.e. you should use the same reference flux, F<sub>z0</sub>). Check out the paper by Buesseler _et al._ (2007) for a nice case study.
 
 ```{r Flux-profile-fitted2}
   # Plot vertical profile (note that depth is on the y-axis)

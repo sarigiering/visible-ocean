@@ -36,7 +36,7 @@ Note that the coordinates of the image are listed as you would for a matrix:
 
 The position of the vignette in the composite image is provided by
   *image_y* and *image_x*. The height and width of the vignette are provided as:
-  *image_h* and *image_2*.
+  *image_h* and *image_w*.
 
 The code will fail if any of the collage images are missing.
 
@@ -84,7 +84,7 @@ After extraction, you will find a new folder ("Extracted") in your project folde
 ```
 
 ## Code 
-Copy-paste the code below into your Python environment (e.g. Spyder). You should not have to change anything in the code, though you may have to install some of the packages. To extract your vignettes, simply select the entire code and run everything (Ctrl+A, Ctrl+Enter).
+Copy-paste the code below into Python (e.g. Spyder). You should not have to change anything in the code, though you may have to install some of the packages. To extract your vignettes, simply select the entire code and run everything (Ctrl+A, Ctrl+Enter).
 
 The code will extract all vignettes in your selected `<raw>` folder, even if they have previously been extracted. So, don't forget to remove the files that you don't want to extract again or choose a different `<raw>` folder.
 
