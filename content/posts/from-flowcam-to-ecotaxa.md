@@ -17,7 +17,6 @@ There are typically two steps that you want to carry out now:
 You can do the above in the software that comes shipped with the FlowCam: VisualSpreadsheet. It is a great software, but you may decide that you want more flexibility. For example, you might want to use a different particle detection routine to measure the particles, or you may want to use a different programme for the image classification.
 {{< figure src="/img/FlowCam-to-EcoTaxa-2.jpg" caption="Example of image sorting and classification using EcoTaxa">}}
 
-
 For semi-automated particle classification, I am a big fan of
 <a class="link" href="https://ecotaxa.obs-vlfr.fr/" target="_blank">EcoTaxa</a>.
 	EcoTaxa is a web application developed and hosted at 
@@ -25,11 +24,6 @@ For semi-automated particle classification, I am a big fan of
 It allows you to upload your images, carry out some automated presorting, and offers a simple interface for sorting. Because of EcoTaxa's clear interface, the classification process is fast and intuitive. The web-based approach allows you to sort from anywhere (perfect in the new age of home office!), and you can easily share with collaborators and get their input on your suggested classification. Even better, EcoTaxa is community driven and they ever improving the algorithms.
 
 > The big challenge is now to upload your data onto EcoTaxa!
-
-Luckily, I know just the right person to ask for help: Simon-Martin Schroeder, who has helped to implement the deep learning feature in EcoTaxa. More relevant, he developed
-<a class="link" href="https://morphocut.readthedocs.io/en/latest/index.html/" target="_blank">MorphoCut</a> - an image processing pipeline.
-
-Honestly, writing a MorphoCluster pipeline looks super complicated, but don't be put off by the code. I will point out the important steps.
 
 ## Sample file requirements for EcoTaxa
 The files and folder structure that FlowCam saves is very different to the one required by EcoTaxa. 
@@ -42,6 +36,11 @@ EcoTaxa further asks for **a specific table** to upload the data. Besides inform
 But worry not! We have a solution!
 
 ![MorphoCut logo](/img/morphocut_logo.png)
+
+Luckily, I know just the right person to ask for help: Simon-Martin Schroeder, who has helped to implement the deep learning feature in EcoTaxa. More relevant, he developed
+<a class="link" href="https://morphocut.readthedocs.io/en/latest/index.html/" target="_blank">MorphoCut</a> - an image processing pipeline.
+
+Honestly, writing a MorphoCluster pipeline looks super complicated, but don't be put off by the code. I will point out the important steps.
 
 # The MorphoCut Pipeline
 
