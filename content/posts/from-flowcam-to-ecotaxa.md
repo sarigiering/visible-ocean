@@ -21,7 +21,7 @@ For semi-automated particle classification, I am a big fan of
 <a class="link" href="https://ecotaxa.obs-vlfr.fr/" target="_blank">EcoTaxa</a>.
 	EcoTaxa is a web application developed and hosted at 
 <a class="link" href="http://www.obs-vlfr.fr/" target="_blank">l'Observatoire Océanologique de Villefranche-sur-Mer</a>.
-It allows you to upload your images, carry out some automated presorting, and offers a simple interface for sorting. Because of EcoTaxa's clear interface, the classification process is fast and intuitive. The web-based approach allows you to sort from anywhere (perfect in the new age of home office!), and you can easily share with collaborators and get their input on your suggested classification. Even better, EcoTaxa is community driven and they ever improving the algorithms.
+It allows you to upload your images, carry out some automated presorting, and offers a simple interface for sorting. Because of EcoTaxa's clear interface, the classification process is fast and intuitive. The web-based approach allows you to sort from anywhere (perfect in the new age of home office!), and you can easily share with collaborators and get their input on your suggested classification. Even better, EcoTaxa is community driven and they are ever improving the algorithms.
 
 > The big challenge is now to upload your data onto EcoTaxa!
 
@@ -196,7 +196,7 @@ if __name__ == "__main__":
         # Append object properties to metadata in a ZooProcess-like format
         object_meta = CalculateZooProcessFeatures(regionprops, object_meta)
                
-        # [Stream] Here, three different versions are written. Remove what you do not need.
+        # [Stream] Here, the images and EcoTaxa table are saved and zipped.
         EcotaxaWriter(
             os.path.join(output_path, "EcoTaxa.zip"),
             [
