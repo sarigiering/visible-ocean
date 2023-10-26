@@ -38,7 +38,7 @@ But worry not! We have a solution!
 ![MorphoCut logo](/img/morphocut_logo.png)
 
 Luckily, I know just the right person to ask for help: Simon-Martin Schroeder, who has helped to implement the deep learning feature in EcoTaxa. More relevant, he developed
-<a class="link" href="https://morphocut.readthedocs.io/en/latest/index.html/" target="_blank">MorphoCut</a> - an image processing pipeline.
+<a class="link" href="https://morphocut.readthedocs.io/en/latest/index.html" target="_blank">MorphoCut</a> - an image processing pipeline.
 
 Honestly, writing a MorphoCluster pipeline looks super complicated, but don't be put off by the code. I will point out the important steps.
 
